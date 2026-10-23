@@ -1,40 +1,56 @@
-# PS-23: COVID-19 and Lung Disease Detection from Chest X-rays
+# PS-23: 
+🫁 COVID-19 & Lung Disease Detection from Chest X-rays
 
-**V S Adharsh | RA2311026050021 | AIML B**
+Deep Learning | Healthcare AI | Explainable AI
 
-Deep-learning classifier that sorts chest X-rays into four classes: **COVID-19, Lung opacity, Viral pneumonia, Normal**, with Grad-CAM used to inspect whether the model looks at the lungs rather than text markers or image borders (shortcut learning).
+A deep learning project that classifies chest X-ray images into four categories using MobileNetV2 and uses Grad-CAM to visualize the regions influencing model predictions.
 
-## Dataset
-[COVID-19 Radiography Database](https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database) (Kaggle), 21,165 images used in full (COVID 3,616 / Lung opacity 6,012 / Normal 10,192 / Viral pneumonia 1,345). Lung masks are not used.
+🎯 Classes
 
-## Method
-- Stratified split, seed 42: 15,291 train / 2,699 validation / 3,175 test
-- Resize 224x224, rescale to [0,1]; training augmentation: rotation 15 deg, shift 0.1, zoom 0.1, horizontal flip
-- MobileNetV2 (ImageNet), backbone fully frozen, head: GAP -> Dense(128) -> Dropout(0.3) -> Dense(4, softmax)
-- Adam (default LR), categorical cross-entropy, batch 32, 10 epochs (about 36 min on Colab)
+- 🦠 COVID-19
+- 🫁 Lung Opacity
+- 🧬 Viral Pneumonia
+- ✅ Normal
 
-## Test-set results (3,175 images)
-| Class | Precision | Recall | F1 |
-|---|---|---|---|
-| COVID-19 | 0.81 | 0.90 | 0.85 |
-| Lung opacity | 0.93 | 0.71 | 0.81 |
-| Normal | 0.85 | 0.95 | 0.90 |
-| Viral pneumonia | 0.96 | 0.88 | 0.92 |
-| **Accuracy / Macro F1** | | | **0.87 / 0.87** |
+🚀 Tech Stack
 
-Main confusion: Lung opacity predicted as Normal. Grad-CAM was run on four misclassified test images; the evidence on shortcut learning is inconclusive (see report).
+"Python" · "TensorFlow/Keras" · "MobileNetV2" · "OpenCV" · "Scikit-learn" · "Matplotlib"
 
-## Files
-- `COVID19_Xray_Classification.ipynb`: full notebook (data, split, training, evaluation, misclassified images, Grad-CAM)
-- `RA2311026050021_PS23_Report.pdf`: two-page report
+📊 Model Performance
 
-## How to run
-1. Open the notebook in Google Colab (GPU runtime).
-2. Upload your own `kaggle.json` (Kaggle > Settings > Create New Token) and copy it to `/root/.kaggle/`. Do not paste API keys into the notebook.
-3. Run all cells.
+Metric| Score
+Test Accuracy| 87%
+Macro F1-Score| 0.87
+Trainable Parameters| 164,484
 
-## Limitations
-Single public dataset, no patient IDs (possible patient overlap across splits), no external validation. For research and education only, not a diagnostic tool.
+🔍 Key Features
 
-## Citation
-M.E.H. Chowdhury et al., "Can AI help in screening viral and COVID-19 pneumonia?", IEEE Access, 8, 2020. T. Rahman et al., Computers in Biology and Medicine, 132, 2021.
+- Transfer learning with ImageNet-pretrained MobileNetV2.
+- Image preprocessing and data augmentation.
+- Four-class classification and confusion matrix analysis.
+- Grad-CAM heatmaps to investigate model attention and potential shortcut learning.
+
+📂 Dataset
+
+COVID-19 Radiography Database — 21,165 chest X-ray images.
+
+🔗 "Download Dataset from Kaggle" (https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database)
+
+⚙️ Getting Started
+
+git clone https://github.com/adharsh2006/Deep_learning.git
+cd Deep_learning
+pip install tensorflow numpy pandas scikit-learn matplotlib seaborn opencv-python-headless
+
+Open "COVID19_Xray_Classification.ipynb" in Google Colab, configure your Kaggle API credentials, and run the notebook cells.
+
+⚠️ Disclaimer
+
+This project is for educational and research purposes only. It is not intended to replace professional medical diagnosis.
+
+👨‍💻 Author
+
+V S Adharsh
+B.Tech CSE (AI & ML) | SRM Institute of Science and Technology, Trichy
+
+"GitHub Profile" (https://github.com/adharsh2006)
